@@ -1,0 +1,46 @@
+{:http          {:port                8012
+                 :session-key-path    "sessionkey"
+                 :request-header-size 131072}
+ :logging       {:format :json}
+ :gcs           {:project       "lupapiste-dev"
+                 :region        "europe-north1"
+                 :storage-class "COLDLINE"
+                 :bucket-prefix "onkalo"}
+ :backup-gcs    {:bucket "onkalo-backup-test-fi"}
+ :storage       {:bucket-suffix      "test"
+                 :default-storage-id :gcs}
+ :elasticsearch {:hosts        ["http://127.0.0.1:9200"]
+                 :cluster-name "elasticsearch"
+                 :index-name   "document-metadata"
+                 :shards       1
+                 :replicas     0}
+ :jmxserver     {:port 5050}
+ :jms           {:embedded?  true
+                 :broker-url "vm://0"}
+ :mq            {:implementation :pubsub ;; Or :pubsub
+                 :topics {:api-usage "local.onkalo.api-usage"}}
+ :toj           {:host "http://localhost:8010"}
+ :lupapiste-api {:user     "onkalo"
+                 :password "basicauth"
+                 :host     "http://localhost:8000"}
+ :frontend      {:cdn-host "https://www-qa.lupapiste.fi"}
+ :api-keys      [{:app-id  "abcdefg"
+                  :app-key "12356afbsb"}
+                 {:app-id       "public"
+                  :app-key      "1235678"
+                  :public-only? true}
+                 {:app-id        "specific"
+                  :app-key       "12345678"
+                  :organizations ["753-R"]}
+                 {:app-id     "reader"
+                  :app-key    "12345678"
+                  :read-only? true}
+                 {:app-id         "docstore"
+                  :app-key        "12345678"
+                  :docstore-only? true}
+                 {:app-id            "docterminal"
+                  :app-key           "23456789"
+                  :docterminal-only? true}
+                 {:app-id                "docdepartmental"
+                  :app-key               "34567890"
+                  :docdepartmental-only? true}]}

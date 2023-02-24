@@ -1,0 +1,10 @@
+version: '3'
+services:
+  jms:
+    image: vromero/activemq-artemis
+    environment:
+    - ARTEMIS_USERNAME=onkalo
+    - ARTEMIS_PASSWORD=onkalo
+    ports:
+    - "8161:8161"
+    - "61616:61616"

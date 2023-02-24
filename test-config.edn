@@ -1,0 +1,6 @@
+{:elastic {:http 9200
+           :url "http://127.0.0.1:"
+           :transport 9300
+           :version "6.8.2"
+           :docker-image-name "onkalotastic"
+           :cluster-name "elasticsearch"}}
