@@ -1,0 +1,11 @@
+{:elastic {:http              9200
+           :url               "http://127.0.0.1:"
+           :transport         9300
+           :version           "6.8.2"
+           :docker-image-name "onkalotastic"
+           :cluster-name      "elasticsearch"}
+ :gcs     {:bucket-prefix "_local-test-onkalo_"}
+ :storage {:bucket-suffix      "_test_"
+           :default-storage-id :gcs}
+ :laundry {:host             "http://localhost:4100"
+           :iap-oauth-client false}}

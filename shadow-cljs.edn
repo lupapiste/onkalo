@@ -1,0 +1,28 @@
+;; shadow-cljs configuration
+{:lein            {:profile "cljs"}
+ ;; set an nrepl port for connection to a REPL.
+ :nrepl           {:port 8778}
+
+ :target-defaults {:browser {:output-dir       "resources/public/js/"
+                             :output-to        "resources/public/js/main.js"
+                             :asset-path       "/onkalo/ui/js"
+                             :compiler-options {:infer-externs      :auto
+                                                :output-feature-set :es2020}}}
+
+ :builds          {:dev  {:target           :browser
+                          :closure-defines  {goog.DEBUG true}
+                          :compiler-options {:external-config {:devtools/config {:features-to-install [:formatters :hints]}}
+                                             :source-map      true
+                                             :pretty-print    true}
+
+                          :devtools         {;; after live-reloading finishes call this function
+                                             :after-load onkalo.ui.app/render
+                                             :preloads   [shadow.remote.runtime.cljs.browser]
+                                             :watch-dir  "checkouts/document-search-commons/resources/public/css"
+                                             :watch-path "/onkalo/ui/css"}
+                          :modules          {:main {:entries [onkalo.ui.app]}}}
+
+                   :prod {:target           :browser
+                          :build-options    {:cache-level :jars}
+                          :compiler-options {:source-map true}
+                          :modules          {:main {:entries [onkalo.ui.app]}}}}}
